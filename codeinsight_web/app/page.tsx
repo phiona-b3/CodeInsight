@@ -29,6 +29,14 @@ export default function Home() {
     setLoading(false);
   };
 
+  const getSuggestionStyle = (suggestion: string) => {
+    if (suggestion.includes("[Readability]")) return "text-green-600";
+    if (suggestion.includes("[Best Practice]")) return "text-blue-600";
+    if (suggestion.includes("[Security]")) return "text-red-600";
+    if (suggestion.includes("[Performance]")) return "text-orange-600";
+    return "text-gray-700"; //Default color
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
       <h1 className="text-3xl font-bold mb-4 text-blue-600">CodeInsight</h1>
@@ -67,9 +75,9 @@ export default function Home() {
       {aiSuggestions.length > 0 && (
         <div className="mt-4 bg-white p-4 rounded-md shadow-md w-full max-w-2xl">
           <h2 className="text-xl font-bold mb-2">AI Suggestions:</h2>
-          <ul className="list-disc pl-4">
+          <ul className="pl-4">
             {aiSuggestions.map((suggestion, index) => (
-              <li key={index} className="text-green-600">{suggestion}</li>
+              <li key={index} className={getSuggestionStyle(suggestion)}>{suggestion}</li>
             ))}
           </ul>
         </div>

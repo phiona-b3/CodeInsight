@@ -7,14 +7,19 @@ export async function POST(req: Request) {
       const prompt = `
       You are a JavaScript expert reviewing code for a beginner.
       Analyze the following JavaScript code and provide:
-      1️⃣ **Readability Improvements** (e.g., better variable names, function organization).
-      2️⃣ **Best Practices** (e.g., avoid 'var', use 'let' or 'const').
-      3️⃣ **Security Issues** (Only if relevant).
-      4️⃣ **Performance Optimizations** (Only if relevant).
-  
+      
+      For each suggestion, **start with one of these labels**:
+      - [Readability] if it's about formatting or naming conventions.
+      - [Best Practice] if it's about modern JavaScript standards.
+      - [Security] if it's about security risks (only if relevant).
+      - [Performance] if it's about optimization (only if relevant).
+
       If the code is short and doesn't involve user input or loops, skip security and performance sections.
   
       Give clear, **concise** suggestions, and provide an improved version of the code if applicable.
+
+      ❌ Do NOT use numbered lists or extra explanations—just give suggestions using the format:  
+      **[Category] Suggestion text**.
   
       Here is the code to analyze:
       ${code}
